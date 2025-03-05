@@ -1,0 +1,13 @@
+{
+  "name": "playwright-dojo-4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Nazar Kernytskyi",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.5"
+  }
+}

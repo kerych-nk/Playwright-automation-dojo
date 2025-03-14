@@ -15,4 +15,4 @@ test('valid user registration', async ({ page }) => {
     await page.locator('//button[contains(., "Sign up")]').click();
 
     await expect(page.locator('//a[@href="/settings"]')).toBeVisible();
-})
+});

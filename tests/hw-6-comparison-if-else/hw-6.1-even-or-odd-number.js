@@ -5,6 +5,5 @@ function checkEvenOrOdd(number) {
         return "Odd number";
     }
 }
-
 const result = checkEvenOrOdd(8);
 console.log(result);

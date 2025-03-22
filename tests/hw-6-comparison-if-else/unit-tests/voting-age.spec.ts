@@ -9,12 +9,12 @@ function votingAge (age: number) {
 }
 
 test.describe("voting age messages", () => {
-    test("positive message appear", async () => {
+    test("hw6-15 positive message appear", async () => {
         const result = votingAge(18);
         expect(result).toContain("Ви можете голосувати.");
     });
 
-    test("negative message appear", async () => {
+    test("hw6-16 negative message appear", async () => {
         const result = votingAge(17);
         expect(result).toBe("Ви ще не можете голосувати.");
     });

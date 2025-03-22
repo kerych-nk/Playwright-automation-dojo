@@ -9,12 +9,12 @@ function checkScore(score: number) {
 }
 
 test.describe("check the score for test", () => {
-    test("shoud return 'Тест складено' if score >= 50", async () => {
+    test("hw6-1 should return 'Тест складено' if score >= 50", async () => {
         const result = checkScore(50);
         expect(result).toBe("Тест складено");
     });
 
-    test("should return 'Тест не складено' if score < 50", async () => {
+    test("hw6-2 should return 'Тест не складено' if score < 50", async () => {
         const result = checkScore(49);
         expect(result).toBe("Тест не складено");
     });

@@ -13,17 +13,17 @@ function greetingByTime(hour: number) {
 }
 
 test.describe("should return correct greetings", () => {
-    test("should return 'Доброго ранку' if < 12", async () => {
+    test("hw6-9 should return 'Доброго ранку' if < 12", async () => {
         const result = greetingByTime(11);
         expect(result).toBe("Доброго ранку!");
     });
 
-    test("should return 'Доброго дня!' if <= 18", async () => {
+    test("hw6-10 should return 'Доброго дня!' if <= 18", async () => {
         const result = greetingByTime(12);
         expect(result).toBe("Доброго дня!");
     });
 
-    test("should return 'Доброго вечора!' if > 18", async () => {
+    test("hw6-11 should return 'Доброго вечора!' if > 18", async () => {
         const result = greetingByTime(19);
         expect(result).toBe("Доброго вечора!");
     });

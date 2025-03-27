@@ -14,10 +14,7 @@ function insertDashes(number) {
         result += number[i]
        
 
-        if (number[i] % 2 !== 0) {
-            continue
-        }
-        else if (number[i+1] % 2 === 0) {
+        if (number[i+1] % 2 === 0 && (number[i] % 2 === 0)) {
             result += "-";
         }
     }

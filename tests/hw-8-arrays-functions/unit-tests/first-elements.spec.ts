@@ -7,7 +7,7 @@ import test, { expect } from "@playwright/test";
 console.log(first([7, 9, 0, -2])); // 7  
 console.log(first([7, 9, 0, -2], 3)); // [7, 9, 0]    
 */
-function first(array: any[], n?: number) {
+function first(array: unknown[], n?: number) {
     if (n === undefined) {
         return array[0];
     }

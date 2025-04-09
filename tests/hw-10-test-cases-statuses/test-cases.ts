@@ -61,5 +61,5 @@ const testCases = [
     { id: 4, description: "Update profile", status: "passed" },
     { id: 5, description: "Delete account", status: "failed" },
 ];
-const result = generateSummary(testCases);
-console.log(result);
+const result1 = generateSummary(testCases);
+console.log(result1);

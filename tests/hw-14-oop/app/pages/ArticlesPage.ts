@@ -13,9 +13,13 @@ export class ArticlesPage extends BasePage {
     });
   }
 
-  getEditButtonByTitle(title: string) {
+  getEditButtonByTitle() {
     return this.page.getByRole('link', { 
       name: '  Edit Article' 
     });
+  }
+
+  getDeleteButton() {
+    
   }
 }

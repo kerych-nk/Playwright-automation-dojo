@@ -22,6 +22,7 @@ test("create article", async ({ page }) => {
   const signUpPage = new SignUpPage(page);
   const articleEditorPage = new ArticleEditorPage(page);
   const articlesPage = new ArticlesPage(page);
+  const basePage = new BasePage(page);
 
   await signUpPage.goto();
   await signUpPage.registerUser({
@@ -30,7 +31,7 @@ test("create article", async ({ page }) => {
     pass: "test123",
   });
 
-  await page.locator(`//a[@href="/editor"]`).click();
+  await basePage.goToNewArticle();
 
   await articleEditorPage.editArticle({
     title: "random title",

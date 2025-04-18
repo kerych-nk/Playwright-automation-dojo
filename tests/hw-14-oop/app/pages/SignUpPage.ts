@@ -1,16 +1,3 @@
-/*
-1. Дописати методи  і властивості для взаємодії зі сторінкою Articles 
-
-editArticle()
-removeArticle()
-
-2. Дописати тести з використанням цих методів
-
-3. Зробити наслідування від BasePage 
-
-4. Дадати до BasePage методи і властивості необхідні для взаємодії з хедером сторінки
-*/
-
 import { Locator, Page } from "@playwright/test";
 
 export class SignUpPage {
@@ -31,7 +18,7 @@ export class SignUpPage {
   }
 
   async goto() {
-    await this.page.goto("/register");
+    await this.page.goto("https://demo.learnwebdriverio.com/register");
   }
 
   private async setUsername(username: string = "") {

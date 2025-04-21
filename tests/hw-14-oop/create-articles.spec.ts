@@ -18,7 +18,7 @@ import { ArticleEditorPage } from "./app/pages/ArticleEditorPage";
 import { ArticlesPage } from "./app/pages/ArticlesPage";
 import { BasePage } from "./app/pages/BasePage";
 
-test("create article", async ({ page }) => {
+test("Create new article - NA03", async ({ page }) => {
   const signInPage = new SignInPage(page);
   const articleEditorPage = new ArticleEditorPage(page);
   const articlesPage = new ArticlesPage(page);

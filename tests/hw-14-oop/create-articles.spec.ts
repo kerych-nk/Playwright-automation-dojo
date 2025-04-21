@@ -13,23 +13,21 @@ removeArticle()
 
 // page object model  (обєкт моделі сторінки)
 import { test, Locator, Page, expect } from "@playwright/test";
-import { SignUpPage } from "./app/pages/SignUpPage";
+import { SignInPage } from "./app/pages/SignInPage";
 import { ArticleEditorPage } from "./app/pages/ArticleEditorPage";
 import { ArticlesPage } from "./app/pages/ArticlesPage";
 import { BasePage } from "./app/pages/BasePage";
 
 test("create article", async ({ page }) => {
-  const signUpPage = new SignUpPage(page);
+  const signInPage = new SignInPage(page);
   const articleEditorPage = new ArticleEditorPage(page);
   const articlesPage = new ArticlesPage(page);
   const basePage = new BasePage(page);
 
-  await signUpPage.goto();
-  await signUpPage.registerUser({
-    username: "test1234",
-    email: "test1234@gmail.com",
-    pass: "test123",
-  });
+  await signInPage.goto();
+  await signInPage.enterUserEmail();
+  await signInPage.enterUserPassword();
+  await signInPage.clickSignIn();
 
   await basePage.goToNewArticle();
 

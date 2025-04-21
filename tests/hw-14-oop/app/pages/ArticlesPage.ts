@@ -13,13 +13,17 @@ export class ArticlesPage extends BasePage {
     });
   }
 
-  getEditButtonByTitle() {
-    return this.page.getByRole('link', { 
-      name: '  Edit Article' 
-    });
+  async editArticleOnDetailsPage() {
+    await this.page.getByRole("link", { name: "Edit Article" })
+    .first()
+    .click();
   }
 
-  getDeleteButton() {
-    
+  async deleteArticleOnDetailsPage() {
+    await this.page.getByRole("button", { name: "Delete Article" }).click();
+  }
+
+  async expectArticleNotPresent(title: string) {
+    await this.getArticleLocatorByTitle(title).waitFor({ state: "detached" });
   }
 }

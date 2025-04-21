@@ -32,7 +32,10 @@ export class ArticleEditorPage extends BasePage {
   }
 
   async publishArticle() {
-    await this.publishArticleButtonLocator.click();
+    await Promise.all([
+      this.page.waitForURL("**/articles/**"),
+      this.publishArticleButtonLocator.click(),
+    ]);
   }
 }
 

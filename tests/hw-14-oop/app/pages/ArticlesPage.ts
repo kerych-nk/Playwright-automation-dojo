@@ -20,7 +20,9 @@ export class ArticlesPage extends BasePage {
   }
 
   async deleteArticleOnDetailsPage() {
-    await this.page.getByRole("button", { name: "Delete Article" }).click();
+    await this.page.getByRole("button", { name: "Delete Article" })
+    .first()
+    .click();
   }
 
   async expectArticleNotPresent(title: string) {

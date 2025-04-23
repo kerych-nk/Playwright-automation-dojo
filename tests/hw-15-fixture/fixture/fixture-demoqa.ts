@@ -7,3 +7,40 @@
 
 ⭐️ записуйте всі отриманні консольні помилки в txt файл (використовуйте вбудований модуль promise https://nodejs.org/dist/latest-v10.x/docs/api/fs.html)
 */
+
+import base from '@playwright/test';
+import { promises as fs } from 'fs';
+import { PracticeFormPage } from '../pages/PracticeFormPage';
+import { TextBox } from '../pages/TextBox';
+import path from 'path';
+
+export const test = base.extend<{
+    practiceForm: PracticeFormPage;
+    textBox: TextBox;
+}>({
+    page: async ({ page }, use) => {
+        await page.route(/ad/i, r => r.abort());
+
+        page.on('console', async m => {
+            if (m.type() === 'error') {
+                const row = `[${new Date().toISOString()}] ${m.text()}\n`;
+                console.log('[ERROR]', m.text());
+                await fs.appendFile(path.resolve(__dirname, '..', 'console-error.txt'), row);
+            }
+        });
+        await use(page);
+    },
+
+    practiceForm: async ({ page }, use) => {
+        const form = new PracticeFormPage(page);
+        await form.goto();
+        await use(form);
+    },
+
+    textBox: async ({ page }, use) => {
+        const tb = new TextBox(page);
+        await tb.goto();
+        await use(tb);
+    },
+});
+export { expect } from '@playwright/test';

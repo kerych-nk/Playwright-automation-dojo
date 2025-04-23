@@ -5,7 +5,8 @@ export class PracticeFormPage extends BasePage {
     private firstName: Locator;
     private lastName: Locator;
     private email: Locator;
-    private gender = (g: string) => this.page.getByLabel(g);
+    private gender = (g: 'Male' | 'Female' | 'Other') =>
+        this.page.locator(`input[name="gender"][value="${g}"]`);
     private mobile: Locator;
     private dobInput: Locator;
     private picture: Locator;
@@ -42,7 +43,7 @@ export class PracticeFormPage extends BasePage {
         await this.firstName.fill(data.first);
         await this.lastName.fill(data.last);
         await this.email.fill(data.email);
-        await this.gender(data.gender).check();
+        await this.gender(data.gender).check({ force: true });
         await this.mobile.fill(data.mobile);
         
         await this.dobInput.click();

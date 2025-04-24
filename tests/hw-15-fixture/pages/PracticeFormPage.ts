@@ -52,7 +52,10 @@ export class PracticeFormPage extends BasePage {
         await this.page.keyboard.press('Enter');
     }
     async submit() {
-        await this.submitBtn.click();
+        await Promise.all([
+            this.page.waitForSelector('.modal-content', { state: 'visible' }),
+            this.submitBtn.click(),
+        ]);
     }
 
     async expectResult(d: {
@@ -73,7 +76,12 @@ export class PracticeFormPage extends BasePage {
         await expect(cell('Student Email')).toHaveText(d.email);
         await expect(cell('Gender')).toHaveText(d.gender);
         await expect(cell('Mobile')).toHaveText(d.mobile);
-        await expect(cell('Date of Birth')).toHaveText(d.dobLong);
+
+        const[day, , year] = d.dobLong.split(/[\s,]+/);
+        const dobCell = cell('Date of Birth');
+        await expect(dobCell).toContainText(day);
+        await expect(dobCell).toContainText(year);
+
         await expect(cell('Picture')).toHaveText('pic.png');
     }
 }

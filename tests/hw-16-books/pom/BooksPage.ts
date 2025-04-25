@@ -12,8 +12,8 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "../../hw-15-fixture/pages/BasePage";
 
 export class BooksPage extends BasePage {
-    private search: Locator;
-    private rows: Locator;
+    public readonly rows: Locator;
+    private readonly search: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -31,9 +31,11 @@ export class BooksPage extends BasePage {
     }
 
     async clickFirstBook() {
-        const row = this.rows.first();
-        const isbn = await row.locator('div').nth(4).innerText();
-        await row.locator('a').click();
-        return isbn;
+        const firstLink = this.rows.first().locator('a');
+        
+        await Promise.all([
+            this.page.waitForURL(/\/books\?book=.*/),
+            firstLink.click(),
+        ]);
     }
 }

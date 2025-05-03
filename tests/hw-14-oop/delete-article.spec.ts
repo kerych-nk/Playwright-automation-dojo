@@ -14,8 +14,8 @@ test("Delete article - DA02", async ({ page }) => {
 
      //Sign
      await signInPage.goto();
-     await signInPage.enterUserEmail();
-     await signInPage.enterUserPassword();
+     await signInPage.enterUserEmail('article.editor@example.com');
+     await signInPage.enterUserPassword('Article#2');
      await signInPage.clickSignIn();
 
      //Create new article

@@ -17,6 +17,9 @@ export class BasePage {
     await this.homeLinkLocator.click();
   }
   async goToNewArticle() {
+    if (this.page.url().startsWith('about:')) {
+      await this.page.goto('https://demo.learnwebdriverio.com/');
+    }
     await this.newArticleLinkLocator.click();
   }
   async goToSettings() {

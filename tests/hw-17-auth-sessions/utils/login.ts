@@ -1,13 +1,21 @@
-import { Page, expect } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { credentials } from "../fixtures/credentials";
+import type { Roles } from "../fixtures/auth";
+import { SignInPage } from "../../hw-14-oop/app/pages/SignInPage";
 
-export async function loginAs(page: Page, role: string) {
-    const baseURL = 'https://demo.learnwebdriverio.com/login';
 
-    await page.goto(`${baseURL}login`);
+export async function loginAs(page: Page, role: Roles) {
+    const { username, password } = credentials[role];
+    const signIn = new SignInPage(page);
 
-    await page.fill('[placeholder="Email"]', role);
-    await page.fill('[placeholder="Password"]', 'nktest123');
-    await page.click(`//button[normalize-space(.)='Sign in']`);
+    await signIn.goto();
+    await signIn.enterUserEmail(username);
+    await signIn.enterUserPassword(password);
+    
+    await Promise.all([
+        page.waitForURL('https://demo.learnwebdriverio.com/', { timeout: 10_000 }),
+        signIn.clickSignIn(),
+    ]);
 
-    await expect(page).toHaveURL(/demo/);
+    await page.waitForLoadState('networkidle');
 }

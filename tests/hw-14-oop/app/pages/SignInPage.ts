@@ -1,13 +1,11 @@
 import { Locator, Page } from "@playwright/test";
 
 export class SignInPage {
-    private page: Page;
     private userEmailLocator: Locator;
     private userPasswordLocator: Locator;
     private signInButtonLocator: Locator;
 
-    constructor(page: Page) {
-        this.page = page;
+    constructor(private readonly page: Page) {
 
         this.userEmailLocator = this.page.locator('[placeholder="Email"]');
 
@@ -17,14 +15,16 @@ export class SignInPage {
     }
 
     async goto() {
-        await this.page.goto("https://demo.learnwebdriverio.com/login");
+        await this.page.goto("https://demo.learnwebdriverio.com/login", {
+            waitUntil: 'domcontentloaded',
+        });
     }
 
-    async enterUserEmail(email: string = "test1234@gmail.com") {
+    async enterUserEmail(email: string) {
         await this.userEmailLocator.fill(email);
     }
 
-    async enterUserPassword(password: string = "test123") {
+    async enterUserPassword(password: string) {
         await this.userPasswordLocator.fill(password);
     }
 

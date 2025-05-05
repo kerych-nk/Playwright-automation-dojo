@@ -25,8 +25,8 @@ test("Create new article - NA03", async ({ page }) => {
   const basePage = new BasePage(page);
 
   await signInPage.goto();
-  await signInPage.enterUserEmail();
-  await signInPage.enterUserPassword();
+  await signInPage.enterUserEmail('article.editor@example.com');
+  await signInPage.enterUserPassword('Article#2');
   await signInPage.clickSignIn();
 
   await basePage.goToNewArticle();
